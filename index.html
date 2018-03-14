@@ -5,11 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="css/styles.css">
+    
     <title>See The Top 5 Dental Plans For You</title>
 </head>
 <body>
+        <div class="form-group">
+                <label for="exampleFormControlSelect1">Married?: </label>
+                <select class="form-control" id="maritalStatus">
+                    <option value="" selected>Choose . . .</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label for="exampleFormControlSelect2">Children?: </label>
+                <select class="form-control kids" id="kidsYN">
+                    <option value="" selected>Choose . . .</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label for="exampleFormControlSelect3" class="hidden">Orthodontics Coverage for Children?: </label>
+                <select class="form-control hidden" id="orthoYN">
+                    <option value="" selected>Choose . . .</option>   
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>              
+                </select>
+
+                <button type="button" class="btn btn-secondary" id="submitButton">Submit</button>
+
+                </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/dentalPlanQuery.js"></script>
 </body>
 </html>
