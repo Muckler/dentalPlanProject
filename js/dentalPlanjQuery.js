@@ -1,4 +1,52 @@
 "use strict";
+// Dan's java script
+
+$(".hidden").prop("disabled", true);
+
+// $("#yesKids").on("select", function() {
+//     console.log("select kids");
+//     $(".hidden").prop("disabled", false);
+// })
+
+// let kidsYN = $(".kids option:selected").text();
+// console.log(kidsYN);
+
+$(".kids").change(function() {
+    console.log(this);
+    if (this.value === "Yes") {
+        $(".hidden").prop("disabled", false);   
+    }
+
+})
+
+$("#submitButton").click(function() {
+    
+    let marriedYN = $("#maritalStatus option:selected").val();
+    let kidsYN = $("#kidsYN option:selected").val();
+    let orthoYN = $("#orthoYN option:selected").val();
+
+    if (marriedYN === "" || kidsYN === "") {
+        return alert("Please fill out form completely");
+    
+    }
+
+    let userInput = {married: false, kids: false, ortho: false};
+    
+    if(marriedYN === "Yes") {
+        userInput.married = true;
+    }
+
+    if (kidsYN === "Yes") {
+        userInput.kids = true;
+    }
+
+    if (orthoYN === "Yes") {
+        userInput.ortho = true;
+    }
+    
+    console.log(userInput);
+
+})
 
 (function () {
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
@@ -12,11 +60,11 @@
         console.log(error);
     })
     // will receive userInput object below from event listener
-    var userInput = { married: true, kids: true, ortho: true };
+    // don't need with event listener var userInput = { married: true, kids: true, ortho: true };
     console.log(userInput);
     //married function
     //below function for non married users
-    function Individual(userInput, uniqueS) {
+    function Individual(userInput, uniqueS) 
         var chartOutS = [];
         if (userInput.kids == true) {
             //user selected ortho coverage for kids
