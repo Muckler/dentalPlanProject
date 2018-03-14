@@ -36,6 +36,7 @@
             }//end ortho if
             //need else if no ortho and have kids
         }//end kids if 
+        //no kids below else
         else {
             for (let i = 0; i < 4; i++) {
                 let chartOutS = {};
@@ -70,6 +71,7 @@
                 }//end for loop
                 console.log(graphM);
                 //will return value of graphMKO instead of below to insert in graphic
+                //below code will be deleted when integrate with html
                 var dentalBox = document.getElementById("dental");
                 for (let m = 0; m < 4; m++) {dentalBox.innerHTML = "<p>" + "Plane Name:  " + graphM[m].planName+ "<br />" + "Plan Phone #:  " + graphM[m].phone +
                 "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
