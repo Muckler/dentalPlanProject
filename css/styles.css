@@ -1,3 +1,31 @@
+#header {
+    background-image: url('../images/dental-room-1-2.jpeg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 300px;
+    margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 750px) {
+    #header {
+        background-image: url('../images/dental-room-1-2.jpeg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center top;
+        height: 200px;
+        margin-bottom: 15px;
+    }
+}
+
+.container {
+    margin: 0 auto;
+}
+
+#form-intro {
+    text-align: center;
+}
+
 /* .hidden {
     display: none;
 } */
