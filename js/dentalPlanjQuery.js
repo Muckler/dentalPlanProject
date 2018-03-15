@@ -80,7 +80,7 @@ $("#submitButton").click(function() {
         })
 
     // will receive userInput object below from event listener
-    var userInput = { married: false, kids: false, ortho: true };
+    var userInput = { married: false, kids: false, ortho: false };
     console.log(userInput);
     //married function
     //below function for non married users
@@ -118,6 +118,15 @@ $("#submitButton").click(function() {
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphS);
+                var dentalBox = document.getElementsByClassName('plan1');
+                for (let m = 0; m < 4; m++) {
+                    var dentalElem = document.createElement('p');
+                    dentalElem.innerHTML ="Plan Name:  " + graphS[m].planName+ "<br />" + "Plan Phone #:  " + graphS[m].phone +
+                    "<br />" + "Cost of Dental Plan:  " + graphS[m].cost +
+                    "<br />" + "Ortho Coverage for Kids:  " + graphS[m].ortho
+                    + "<br />" + "Major Coverage:  " + graphS[m].major;
+                    dentalBox[0].append(dentalElem);
+                }//end for loop
             }//end ortho if
             //need else if no ortho and have kids
         }//end kids if 
@@ -152,8 +161,16 @@ $("#submitButton").click(function() {
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
             console.log(graphS);
+            var dentalBox = document.getElementsByClassName('plan1');
+                for (let m = 0; m < 4; m++) {
+                    var dentalElem = document.createElement('p');
+                    dentalElem.innerHTML ="Plan Name:  " + graphS[m].planName+ "<br />" + "Plan Phone #:  " + graphS[m].phone +
+                    "<br />" + "Cost of Dental Plan:  " + graphS[m].cost +
+                    "<br />" + "Major Coverage:  " + graphS[m].major;
+                    dentalBox[0].append(dentalElem);
+                }//end for loop
         }//end else no kids
-         return graphS;
+         //return graphS;
     }//end individual function
     function Married(userInput, uniqueM) {
         console.log(uniqueM);
@@ -173,6 +190,8 @@ $("#submitButton").click(function() {
                     chartOutM.major = uniqueM[i].major_dental_care_adult;
                     graphM.push(chartOutM);
                 }//end for loop
+
+                //starting code for max min avg
                 var uniqueMNum = [];
                 //convert string values to number couple_1_child_age_21
                 uniqueM.forEach(function(element) {
@@ -191,16 +210,15 @@ $("#submitButton").click(function() {
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphM);
-                //will return value of graphMKO instead of below to insert in graphic
-                //below code will be deleted when integrate with html
-
-                $('#plan1-name').innerHTML = "Plan Name: " + graphM[m].planName;
-
-                for (let m = 0; m < 4; m++) {dentalBox.innerHTML = "<p>" + "Plane Name:  " + graphM[m].planName+ "<br />" + "Plan Phone #:  " + graphM[m].phone +
-                "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
-                "<br />" + "Ortho Coverage for Kids:  " + graphM[m].ortho
-                + "<br />" + "<br />" + "<br />" + "Major Coverage:  " + graphM[m].major + "</p>";}
-                
+                var dentalBox = document.getElementsByClassName('plan1');
+                for (let m = 0; m < 4; m++) {
+                    var dentalElem = document.createElement('p');
+                    dentalElem.innerHTML ="Plan Name:  " + graphM[m].planName+ "<br />" + "Plan Phone #:  " + graphM[m].phone +
+                    "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
+                    "<br />" + "Ortho Coverage for Kids:  " + graphM[m].ortho
+                    + "<br />" + "Major Coverage:  " + graphM[m].major;
+                    dentalBox[0].append(dentalElem);
+                }//end for loop
             }//end orth if
             //no ortho displayed
             else {
@@ -231,8 +249,15 @@ $("#submitButton").click(function() {
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphM);
-            }//end ortho els
-            
+                var dentalBox = document.getElementsByClassName('plan1');
+                for (let m = 0; m < 4; m++) {
+                    var dentalElem = document.createElement('p');
+                    dentalElem.innerHTML ="Plan Name:  " + graphM[m].planName+ "<br />" + "Plan Phone #:  " + graphM[m].phone +
+                    "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
+                    "<br />" +  "Major Coverage:  " + graphM[m].major;
+                    dentalBox[0].append(dentalElem);
+                }//end for loop
+            }//end ortho els        
         }//end kids if
         //else no kids  and therefor do not show ortho & no ortho logic
         else {
@@ -263,7 +288,14 @@ $("#submitButton").click(function() {
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphM);
-       
+                var dentalBox = document.getElementsByClassName('plan1');
+                for (let m = 0; m < 4; m++) {
+                    var dentalElem = document.createElement('p');
+                    dentalElem.innerHTML ="Plan Name:  " + graphM[m].planName+ "<br />" + "Plan Phone #:  " + graphM[m].phone +
+                    "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
+                    "<br />" +  "Major Coverage:  " + graphM[m].major;
+                    dentalBox[0].append(dentalElem);
+                }//end for loop
         }//end else
         return graphM;
     }//end married function
@@ -299,7 +331,6 @@ $("#submitButton").click(function() {
         else {
             Individual(userInput, uniqueS);
         }
-
     }
     // handle XHR error
     function updateUIError() {
