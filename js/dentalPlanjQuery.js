@@ -73,8 +73,10 @@
             // dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
             // dentalStats.privateDentalIns = Number(privateDentalIns);
             // dentalStats.toothAche12Mos = Number(toothAche12Mos);
-            $('#stat1').append(`<span class='numscroller' data-min='0' data-max=${privateDentalIns} data-delay='3' data-increment='1'></span>`);
-            
+            $('#stat1').append(`<span class='numscroller' data-min='0' data-max=${dentalVisit12Mos} data-delay='3' data-increment='1'></span>`);
+            $('#stat2').append(`<span class='numscroller' data-min='0' data-max=${privateDentalIns} data-delay='3' data-increment='1'></span>`);
+            $('#stat3').append(`<span class='numscroller' data-min='0' data-max=${toothAche12Mos} data-delay='3' data-increment='1'></span>`);
+
             // let percentInsure = document.getElementById('stat1');
             // let percentVisit = document.getElementById('stat2');
             // let percentToothAche = document.getElementById('stat3');
