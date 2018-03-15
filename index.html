@@ -16,50 +16,70 @@
                 
             </div>
         </div>
-    </div>
-    <div class="container">
         <div class="row">
             <div class="col" id="form-intro">
                 <h1>Find the Best Dental Plans for Your Needs</h1>
+                <p>Fill out the form below to see the top 5 cost-effective dental plans designed for you.<br>Whether you're single, married, or have children, receive top recommendations for plans right now.</p>
             </div>
         </div>
         <div class="row">
             <div class="col" id="user-form">
-                <form>
+                <form class="needs-validation" novalidate>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Married?: </label>
-                            <select class="form-control" id="maritalStatus">
+                            <select class="form-control" id="maritalStatus" required>
                                 <option value="" selected>Choose . . .</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Please choose Yes or No
+                            </div>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleFormControlSelect2">Children?: </label>
-                            <select class="form-control kids" id="kidsYN">
+                            <select class="form-control kids" id="kidsYN" required>
                                 <option value="" selected>Choose . . .</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
+                            <div class="invalid-feedback">
+                                    Please choose Yes or No
+                            </div>
+                    </div>
+                    <div class="form-group">
                         <label for="exampleFormControlSelect3" class="hidden">Orthodontics Coverage for Children?: </label>
-                            <select class="form-control hidden" id="orthoYN">
+                            <select class="form-control hidden" id="orthoYN" required>
                                 <option value="" selected>Choose . . .</option>   
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>              
                             </select>
-                        <button type="button" class="btn btn-secondary" id="submitButton">Submit</button>
+                            <div class="invalid-feedback">
+                                    Please choose Yes or No
+                            </div>
                     </div>
+                        <button type="submit" class="btn" id="submitButton">Find Plans</button>
                 </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div id="disclaimers">
-
+        <div class="row" id="stats">
+                <div class="col-md stat-box box-bottom" id="stat1">
+                    <h5>% Visit To Dentist Last Year</h5>
+                    <span class="numscroller" data-min="0" data-max="36.3" data-delay="3" data-increment="1">36.3</span>
                 </div>
-            </div>
+                <div class="col-md stat-box box-bottom" id="stat2">
+                    <h5>% Private Dental Insurance</h5>
+                    <span class="numscroller">Stat #2</span>
+                </div>
+                <div class="col-md stat-box" id="stat3">
+                    <h5>% With Toothache Last Year</h5>
+                    <span class="numscroller">Stat #3</span>
+                </div>
         </div>
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/dentalPlanjQuery.js"></script>
+    <script src="js/jquery.numscroller-1.0.js"></script>
 </body>
 </html>
