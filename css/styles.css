@@ -1,29 +1,185 @@
+.container {
+    margin: 0 auto;
+}
+
 #header {
     background-image: url('../images/dental-room-1-2.jpeg');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center top;
-    height: 300px;
-    margin-bottom: 40px;
+    height: 150px;
+    margin-bottom: 10px;
 }
 
-@media only screen and (max-width: 750px) {
+#results-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: 
+        linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+        ),
+        url('../images/kid-and-dentist-2.jpeg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+#results-intro {
+    font-size: 30px;
+    color: white;
+}
+
+.results-wrapper {
+    width: 80%;
+}
+
+@media (min-width: 576px) {
     #header {
         background-image: url('../images/dental-room-1-2.jpeg');
         background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: center top;
-        height: 200px;
-        margin-bottom: 15px;
+        height: 220px;
+        margin-bottom: 20px;
+    }
+
+    #results-header {
+        height: 220px;
+        margin-bottom: 20px;
+    }
+
+    #results-intro {
+        font-size: 45px;
     }
 }
 
-.container {
-    margin: 0 auto;
+@media (min-width: 768px) {
+    #header {
+        background-image: url('../images/dental-room-1-2.jpeg');
+        background-size: 100%;
+        height: 250px;
+        margin-bottom: 25px;
+    }
+
+    #results-header {
+        background: 
+            linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+            ),
+            url('../images/kid-and-dentist-3.jpeg');
+        background-size: 100%;
+        height: 250px;
+        margin-bottom: 25px;
+    }
+
+    #results-intro {
+        font-size: 55px;
+    }
+}
+
+@media (min-width: 992px) {
+    #header {
+        background-image: url('../images/dental-room-1-2.jpeg');
+        background-size: 100%;
+        height: 300px;
+        margin-bottom: 30px;
+    }
+
+    #results-header {
+        background:
+            linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+            ),
+            url('../images/kid-and-dentist-3.jpeg');
+        background-size: 100%;
+        height: 300px;
+        margin-bottom: 30px;
+    }
+
+    #results-intro {
+        font-size: 65px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #header {
+        background-image: url('../images/dental-room-1-2.jpeg');
+        background-size: 100%;
+        height: 300px;
+        margin-bottom: 40px;
+    }
+
+    #results-header {
+        background: 
+            linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+            ),
+            url('../images/kid-and-dentist-4.jpeg');
+        background-size: 100%;
+        height: 300px;
+        margin-bottom: 40px;
+    }
+
+    #results-intro {
+        font-size: 75px;
+    }
+}
+
+@media (min-width: 1600px) {
+    #header {
+        background-image: url('../images/dental-room-1-1.jpeg');
+        background-size: 100%;
+        height: 350px;
+        margin-bottom: 40px;
+    }
+
+    #results-header {
+        background: 
+            linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+            ),
+            url('../images/kid-and-dentist-4.jpeg');
+        background-size: 100%;
+        height: 350px;
+        margin-bottom: 40px;
+    }
+
+    #results-intro {
+        font-size: 90px;
+    }
 }
 
 #form-intro {
     text-align: center;
+}
+
+form {
+    margin: 20px auto;
+    padding: 5%;
+    border: 1px solid #ced4da;
+    box-shadow: 0 0 10px rgb(178, 178, 179);
+    border-radius: 10px;
+    width: 80%;
+}
+
+label {
+    font-weight: 600;
+}
+
+.btn {
+    background-color: rgb(31, 65, 201);
+    color: white;
+}
+
+.btn:hover {
+    background-color: rgb(178, 178, 179);
+    color: black;
 }
 
 /* .hidden {

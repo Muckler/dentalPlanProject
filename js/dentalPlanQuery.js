@@ -24,10 +24,10 @@ $("#submitButton").click(function() {
     let kidsYN = $("#kidsYN option:selected").val();
     let orthoYN = $("#orthoYN option:selected").val();
 
-    if (marriedYN === "" || kidsYN === "") {
-        return alert("Please fill out form completely");
+    // if (marriedYN === "" || kidsYN === "") {
+    //     return alert("Please fill out form completely");
     
-    }
+    // }
 
     let userInput = {married: false, kids: false, ortho: false};
     
