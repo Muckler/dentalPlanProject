@@ -3,14 +3,32 @@
 (function () {
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
     var url = "https://data.healthcare.gov/resource/dtk6-f38y.json";
+    // API for Maryland schoolchildren data (Kindergarten  & 3rd grade)
+    var url2 = "https://data.maryland.gov/api/views/8n7n-ij7b/rows.json?accessType=DOWNLOAD";
     //when we get response from API we will assign that array to theData global variable
     var theData = {};
+
     //global variable because several functions use it
     $.get(url).done(function (response) {
         updateUISuccess(response);
     }).fail(function (error) {
         console.log(error);
     })
+
+        $.get(url2).done(function (response) {
+            let dentalStats = {};
+            let dentalVisit12Mos = response.data[32][9];
+            let privateDentalIns = response.data[29][9];
+            let toothAche12Mos = response.data[44][9];
+            dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
+            dentalStats.privateDentalIns = Number(privateDentalIns);
+            dentalStats.toothAche12Mos = Number(toothAche12Mos);
+            $('#stats').innerHTML = '<span>' + dentalStats.dentalVisit12Mos + '</span>';
+
+        }).fail(function (error) {
+            console.log(error);
+        })
+
     // will receive userInput object below from event listener
     var userInput = { married: true, kids: true, ortho: true };
     console.log(userInput);
