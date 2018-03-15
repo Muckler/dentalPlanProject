@@ -86,19 +86,7 @@ $("#submitButton").click(function() {
     //below function for non married users
     function Individual(userInput, uniqueS) { 
         var chartOutS = [];
-        if (userInput.kids == true) {]\
-    
-
-
-
-
-
-
-
-
-
-
-            3``
+        if (userInput.kids == true) {
             //user selected ortho coverage for kids
             if (userInput.ortho == true) {
                 var graphS = [];    
