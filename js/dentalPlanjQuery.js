@@ -80,7 +80,7 @@ $("#submitButton").click(function() {
         })
 
     // will receive userInput object below from event listener
-    var userInput = { married: false, kids: false, ortho: false };
+    var userInput = { married: false, kids: true, ortho: true };
     console.log(userInput);
     //married function
     //below function for non married users
@@ -127,6 +127,42 @@ $("#submitButton").click(function() {
                     + "<br />" + "Major Coverage:  " + graphS[m].major;
                     dentalBox[0].append(dentalElem);
                 }//end for loop
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["My Plan", "Average Plan"],
+        datasets: [{
+            label: 'Plan Cost in Dollars',
+            data: [graphS[0].cost, avgC ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+;
+
             }//end ortho if
             //need else if no ortho and have kids
         }//end kids if 
