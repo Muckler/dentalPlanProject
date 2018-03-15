@@ -19,6 +19,8 @@ $(".kids").change(function() {
 
 })
 
+//this is a comment
+
 $("#submitButton").click(function() {
     
     let marriedYN = $("#maritalStatus option:selected").val();
