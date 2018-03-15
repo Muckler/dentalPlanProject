@@ -1,15 +1,14 @@
 "use strict";
-/* Dan's java script
 
 $(".hidden").prop("disabled", true);
 
 // $("#yesKids").on("select", function() {
-//     console.log("select kids");
+
 //     $(".hidden").prop("disabled", false);
 // })
 
 // let kidsYN = $(".kids option:selected").text();
-// console.log(kidsYN);
+
 
 $(".kids").change(function() {
     console.log(this);
@@ -18,8 +17,6 @@ $(".kids").change(function() {
     }
 
 })
-
-//this is a comment
 
 $("#submitButton").click(function() {
     
@@ -48,7 +45,6 @@ $("#submitButton").click(function() {
     
     console.log(userInput);
 
-}) end Dans button*/
 
 (function () {
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
@@ -66,15 +62,20 @@ $("#submitButton").click(function() {
     })
 
         $.get(url2).done(function (response) {
-            let dentalStats = {};
+            // let dentalStats = {};
             let dentalVisit12Mos = response.data[32][9];
             let privateDentalIns = response.data[29][9];
             let toothAche12Mos = response.data[44][9];
-            dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
-            dentalStats.privateDentalIns = Number(privateDentalIns);
-            dentalStats.toothAche12Mos = Number(toothAche12Mos);
-            $('#stats').innerHTML = '<span>' + dentalStats.dentalVisit12Mos + '</span>';
-
+            // dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
+            // dentalStats.privateDentalIns = Number(privateDentalIns);
+            // dentalStats.toothAche12Mos = Number(toothAche12Mos);
+            $('#stat1').append(`<span class='numscroller' data-min='0' data-max=${privateDentalIns} data-delay='3' data-increment='1'></span>`);
+            
+            // let percentInsure = document.getElementById('stat1');
+            // let percentVisit = document.getElementById('stat2');
+            // let percentToothAche = document.getElementById('stat3');
+            // let appendStat1 = percentInsure.appendChild('span');
+        
         }).fail(function (error) {
             console.log(error);
         })
