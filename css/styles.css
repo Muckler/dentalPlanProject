@@ -37,6 +37,12 @@
     width: 80%;
 }
 
+@media only screen and (max-width: 767px) {
+    .box-bottom {
+        margin-bottom: 25px;
+    } 
+}
+
 @media (min-width: 576px) {
     #header {
         background-image: url('../images/dental-room-1-2.jpeg');
@@ -53,6 +59,7 @@
     #results-intro {
         font-size: 45px;
     }
+
 }
 
 @media (min-width: 768px) {
@@ -161,7 +168,7 @@
 
 form {
     margin: 20px auto;
-    padding: 5%;
+    padding: 4%;
     border: 1px solid #ced4da;
     box-shadow: 0 0 10px rgb(178, 178, 179);
     border-radius: 10px;
@@ -182,6 +189,18 @@ label {
     color: black;
 }
 
-/* .hidden {
-    display: none;
-} */
+#stats {
+    background-color: rgb(31, 65, 201);
+    margin-top: 15px;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+.numscroller {
+    font-size: 45px;
+}
+
+.stat-box {
+    line-height: 1;
+}

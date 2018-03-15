@@ -1,52 +1,56 @@
-"use strict";
-
-$(".hidden").prop("disabled", true);
-
-// $("#yesKids").on("select", function() {
-
-//     $(".hidden").prop("disabled", false);
-// })
-
-// let kidsYN = $(".kids option:selected").text();
-
-
-$(".kids").change(function() {
-    console.log(this);
-    if (this.value === "Yes") {
-        $(".hidden").prop("disabled", false);   
-    }
-
-})
-
-$("#submitButton").click(function() {
-    
-    let marriedYN = $("#maritalStatus option:selected").val();
-    let kidsYN = $("#kidsYN option:selected").val();
-    let orthoYN = $("#orthoYN option:selected").val();
-
-    if (marriedYN === "" || kidsYN === "") {
-        return alert("Please fill out form completely");
-    
-    }
-
-    let userInput = {married: false, kids: false, ortho: false};
-    
-    if(marriedYN === "Yes") {
-        userInput.married = true;
-    }
-
-    if (kidsYN === "Yes") {
-        userInput.kids = true;
-    }
-
-    if (orthoYN === "Yes") {
-        userInput.ortho = true;
-    }
-    
-    console.log(userInput);
-
-
 (function () {
+    "use strict";
+    var userInput = {married: false, kids: false, ortho: false};
+
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+    }, false);
+
+    $(".hidden").prop("disabled", true);
+
+    $(".kids").change(function() {
+        console.log(this);
+        if (this.value === "Yes") {
+            $(".hidden").prop("disabled", false);   
+        } else {
+            $(".hidden").prop("disabled", true);   
+        }
+    })
+
+    $("#submitButton").click(function() {
+        console.log(userInput);
+        let marriedYN = $("#maritalStatus option:selected").val();
+        let kidsYN = $("#kidsYN option:selected").val();
+        let orthoYN = $("#orthoYN option:selected").val();
+        if (marriedYN === "" || kidsYN === "") {
+            console.log(userInput);
+            return alert("Please fill out form completely");
+        }
+        // let userInput = {married: false, kids: false, ortho: false};
+        if(marriedYN === "Yes") {
+            userInput.married = true;
+            console.log(userInput);
+        }
+        if (kidsYN === "Yes") {
+            userInput.kids = true;
+            console.log(userInput);
+        }
+        if (orthoYN === "Yes") {
+            userInput.ortho = true;
+            console.log(userInput);
+        }
+        console.log(userInput);
+    })
+
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
     var url = "https://data.healthcare.gov/resource/dtk6-f38y.json";
     // API for Maryland schoolchildren data (Kindergarten  & 3rd grade)
@@ -85,7 +89,7 @@ $("#submitButton").click(function() {
     console.log(userInput);
     //married function
     //below function for non married users
-    function Individual(userInput, uniqueS) { 
+    function Individual(userInput, uniqueS) {
         var chartOutS = [];
         if (userInput.kids == true) {
             //user selected ortho coverage for kids
@@ -232,8 +236,7 @@ $("#submitButton").click(function() {
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphM);
-            }//end ortho els
-            
+            }//end ortho els   
         }//end kids if
         //else no kids  and therefor do not show ortho & no ortho logic
         else {
@@ -291,7 +294,7 @@ $("#submitButton").click(function() {
         var uniqueS = singleData.filter(
             function(a){if (!this[a.couple_1_child_age_21]) {this[a.couple_1_child_age_21] = 1; return a;}},
             {}
-           );
+        );
         console.log(uniqueS);
 
         if (userInput.married == true) {
@@ -300,8 +303,8 @@ $("#submitButton").click(function() {
         else {
             Individual(userInput, uniqueS);
         }
-
     }
+
     // handle XHR error
     function updateUIError() {
         var weatherBox = document.getElementById("dental");
