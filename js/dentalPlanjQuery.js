@@ -1,5 +1,5 @@
 "use strict";
-// Dan's java script
+/* Dan's java script
 
 $(".hidden").prop("disabled", true);
 
@@ -46,7 +46,7 @@ $("#submitButton").click(function() {
     
     console.log(userInput);
 
-})
+}) end Dans button*/
 
 (function () {
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
@@ -60,13 +60,25 @@ $("#submitButton").click(function() {
         console.log(error);
     })
     // will receive userInput object below from event listener
-    // don't need with event listener var userInput = { married: true, kids: true, ortho: true };
+    var userInput = { married: false, kids: false, ortho: true };
     console.log(userInput);
     //married function
     //below function for non married users
-    function Individual(userInput, uniqueS) 
+    function Individual(userInput, uniqueS) { 
         var chartOutS = [];
-        if (userInput.kids == true) {
+        if (userInput.kids == true) {]\
+    
+
+
+
+
+
+
+
+
+
+
+            3``
             //user selected ortho coverage for kids
             if (userInput.ortho == true) {
                 var graphS = [];    
@@ -75,28 +87,64 @@ $("#submitButton").click(function() {
                     chartOutS.planName = uniqueS[i].issuer_name;
                     chartOutS.phone = uniqueS[i].customer_service_phone_number_toll_free;
                     chartOutS.cost = Number(uniqueS[i].individual_1_child_age_21);
-                    chartOutS.ortho = uniqueS[i].orthodontia_child_coverage;
-                    chartOutS.major = uniqueS[i].major_dental_care_adult_coverage;
+                    chartOutS.ortho = uniqueS[i].orthodontia_child;
+                    chartOutS.major = uniqueS[i].major_dental_care_adult;
                     //adding elements of chartOutSKO to return graphMKO to graph
                     graphS.push(chartOutS);
                 }//end for loop
+                var uniqueMNum = [];
+                //convert string values to number couple_1_child_age_21
+                uniqueS.forEach(function(element) {
+                    uniqueMNum.push(Number(element.individual_1_child_age_21));
+                });
+                //remove NaN values from uniqueMNum
+                var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
+                console.log("filtered code");
+                console.log(uniqueNaNgo);  
+                //max cost of plan
+                var maxC = Math.max.apply(null, uniqueNaNgo) ;
+                // min cost of plan
+                var minC = Math.min.apply(null, uniqueNaNgo);
+                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
+                //toFixed limits to 2 decimal places the avg cost
+                var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
+                console.log(maxC, minC, avgC);
                 console.log(graphS);
             }//end ortho if
             //need else if no ortho and have kids
         }//end kids if 
-        //no kids below else
+        //no kids below else do not need ortho logic cause no ortho
         else {
+            var graphS = [];
             for (let i = 0; i < 4; i++) {
                 let chartOutS = {};
                 chartOutS.planName = uniqueS[i].issuer_name;
                 chartOutS.phone = uniqueS[i].customer_service_phone_number_toll_free;
                 //cost for individual no kids
                 chartOutS.cost = Number(uniqueS[i].premium_adult_individual_age_21);
-                chartOutS.major = uniqueS[i].major_dental_care_adult_coverage;
+                chartOutS.major = uniqueS[i].major_dental_care_adult;
                 //adding the four least expensive to graphS
                 graphS.push(chartOutS);
             }//end for 
-         }//end else no kids
+            var uniqueMNum = [];
+                //convert string values to number couple_1_child_age_21
+                uniqueS.forEach(function(element) {
+                    uniqueMNum.push(Number(element.premium_adult_individual_age_21));
+                });
+                //remove NaN values from uniqueMNum
+                var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
+                console.log("filtered code");
+                console.log(uniqueNaNgo);  
+                //max cost of plan
+                var maxC = Math.max.apply(null, uniqueNaNgo) ;
+                // min cost of plan
+                var minC = Math.min.apply(null, uniqueNaNgo);
+                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
+                //toFixed limits to 2 decimal places the avg cost
+                var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
+                console.log(maxC, minC, avgC);
+            console.log(graphS);
+        }//end else no kids
          return graphS;
     }//end individual function
     function Married(userInput, uniqueM) {
@@ -117,6 +165,23 @@ $("#submitButton").click(function() {
                     chartOutM.major = uniqueM[i].major_dental_care_adult;
                     graphM.push(chartOutM);
                 }//end for loop
+                var uniqueMNum = [];
+                //convert string values to number couple_1_child_age_21
+                uniqueM.forEach(function(element) {
+                    uniqueMNum.push(Number(element.couple_1_child_age_21));
+                });
+                //remove NaN values from uniqueMNum
+                var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
+                console.log("filtered code");
+                console.log(uniqueNaNgo);  
+                //max cost of plan
+                var maxC = Math.max.apply(null, uniqueNaNgo) ;
+                // min cost of plan
+                var minC = Math.min.apply(null, uniqueNaNgo);
+                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
+                //toFixed limits to 2 decimal places the avg cost
+                var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
+                console.log(maxC, minC, avgC);
                 console.log(graphM);
                 //will return value of graphMKO instead of below to insert in graphic
                 //below code will be deleted when integrate with html
@@ -135,14 +200,31 @@ $("#submitButton").click(function() {
                     chartOutM.planName = uniqueM[i].issuer_name;
                     chartOutM.phone = uniqueM[i].customer_service_phone_number_toll_free;
                     chartOutM.cost = Number(uniqueM[i].premium_couple_21);
-                    chartOutM.major = uniqueM[i].major_dental_care_adult_coverage;
+                    chartOutM.major = uniqueM[i].major_dental_care_adult;
                     graphM.push(chartOutM);
                 }//end for loop
+                var uniqueMNum = [];
+                //convert string values to number couple_1_child_age_21
+                uniqueM.forEach(function(element) {
+                    uniqueMNum.push(Number(element.premium_couple_21));
+                });
+                //remove NaN values from uniqueMNum
+                var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
+                console.log("filtered code");
+                console.log(uniqueNaNgo);  
+                //max cost of plan
+                var maxC = Math.max.apply(null, uniqueNaNgo) ;
+                // min cost of plan
+                var minC = Math.min.apply(null, uniqueNaNgo);
+                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
+                //toFixed limits to 2 decimal places the avg cost
+                var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
+                console.log(maxC, minC, avgC);
                 console.log(graphM);
             }//end ortho els
             
         }//end kids if
-        //else no kids  and therefor do not show ortho
+        //else no kids  and therefor do not show ortho & no ortho logic
         else {
             for (let j = 0; j < 4; j++) {
                 let chartOutM = {};
@@ -150,11 +232,27 @@ $("#submitButton").click(function() {
                 chartOutM.phone = uniqueM[j].customer_service_phone_number_toll_free;
                 //price for couple with no kids and thus no ortho
                 chartOutM.cost = Number(uniqueM[j].premium_couple_21);
-                chartOutM.ortho = uniqueM[j].orthodontia_child_coverage;
-                chartOutM.major = uniqueM[j].major_dental_care_adult_coverage;
+                chartOutM.major = uniqueM[j].major_dental_care_adult;
                 graphM.push(chartOutM);
             }//end for 
-            console.log(graphM);
+            var uniqueMNum = [];
+                //convert string values to number couple_1_child_age_21
+                uniqueM.forEach(function(element) {
+                    uniqueMNum.push(Number(element.premium_couple_21));
+                });
+                //remove NaN values from uniqueMNum
+                var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
+                console.log("filtered code");
+                console.log(uniqueNaNgo);  
+                //max cost of plan
+                var maxC = Math.max.apply(null, uniqueNaNgo) ;
+                // min cost of plan
+                var minC = Math.min.apply(null, uniqueNaNgo);
+                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
+                //toFixed limits to 2 decimal places the avg cost
+                var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
+                console.log(maxC, minC, avgC);
+                console.log(graphM);
        
         }//end else
         return graphM;
