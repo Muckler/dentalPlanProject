@@ -80,7 +80,7 @@ $("#submitButton").click(function() {
     })
 
     // will receive userInput object below from event listener
-    var userInput = { married: false, kids: false, ortho: false };
+    var userInput = { married: false, kids: true, ortho: true };
     console.log(userInput);
     //married function
     //below function for non married users
@@ -122,7 +122,7 @@ $("#submitButton").click(function() {
                 for (let m = 0; m < 4; m++) {
                     var dentalElem = document.createElement('p');
                     dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
-                        "<br />" + "Cost of Dental Plan:  " + graphS[m].cost +
+                        "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost +
                         "<br />" + "Ortho Coverage for Kids:  " + graphS[m].ortho
                         + "<br />" + "Major Coverage:  " + graphS[m].major;
                     dentalBox[0].append(dentalElem);
@@ -164,7 +164,80 @@ $("#submitButton").click(function() {
                 ;
 
             }//end ortho if
-            //need else if no ortho and have kids
+            // else for no ortho and have kids
+            else  {
+                var graphS = [];
+                for (let i = 0; i < 4; i++) {
+                    let chartOutS = {};
+                    chartOutS.planName = uniqueS[i].issuer_name;
+                    chartOutS.phone = uniqueS[i].customer_service_phone_number_toll_free;
+                    chartOutS.cost = Number(uniqueS[i].premium_adult_individual_age_21);
+                    chartOutS.major = uniqueS[i].major_dental_care_adult;
+                    //adding elements of chartOutSKO to return graphMKO to graph
+                    graphS.push(chartOutS);
+                }//end for loop
+                var uniqueSNum = [];
+                //convert string values to number couple_1_child_age_21
+                uniqueS.forEach(function (element) {
+                    uniqueSNum.push(Number(element.individual_1_child_age_21));
+                });
+                //remove NaN values from uniqueMNum
+                var uniqueNaNgo = uniqueSNum.filter(unique => unique >= 0);
+                console.log("filtered code");
+                console.log(uniqueNaNgo);
+                //max cost of plan
+                var maxC = Math.max.apply(null, uniqueNaNgo);
+                // min cost of plan
+                var minC = Math.min.apply(null, uniqueNaNgo);
+                var totalC = uniqueNaNgo.reduce(function (a, b) { return a + b; });
+                //toFixed limits to 2 decimal places the avg cost
+                var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
+                console.log(maxC, minC, avgC);
+                console.log(graphS);
+                var dentalBox = document.getElementsByClassName('plan1');
+                for (let m = 0; m < 4; m++) {
+                    var dentalElem = document.createElement('p');
+                    dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
+                        "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost 
+                        + "<br />" + "Major Coverage:  " + graphS[m].major;
+                    dentalBox[0].append(dentalElem);
+                }//end for loop
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["My Plan", "Average Plan"],
+                        datasets: [{
+                            label: 'Plan Cost in Dollars',
+                            data: [graphS[0].cost, avgC],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+                ;
+            }
         }//end kids if 
         //no kids below else do not need ortho logic cause no ortho
         else {
@@ -201,7 +274,7 @@ $("#submitButton").click(function() {
             for (let m = 0; m < 4; m++) {
                 var dentalElem = document.createElement('p');
                 dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
-                    "<br />" + "Cost of Dental Plan:  " + graphS[m].cost +
+                    "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost +
                     "<br />" + "Major Coverage:  " + graphS[m].major;
                 dentalBox[0].append(dentalElem);
             }//end for loop
@@ -285,7 +358,7 @@ $("#submitButton").click(function() {
                 for (let m = 0; m < 4; m++) {
                     var dentalElem = document.createElement('p');
                     dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
-                        "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
+                        "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
                         "<br />" + "Ortho Coverage for Kids:  " + graphM[m].ortho
                         + "<br />" + "Major Coverage:  " + graphM[m].major;
                     dentalBox[0].append(dentalElem);
@@ -434,7 +507,7 @@ $("#submitButton").click(function() {
             for (let m = 0; m < 4; m++) {
                 var dentalElem = document.createElement('p');
                 dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
-                    "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
+                    "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
                     "<br />" + "Major Coverage:  " + graphM[m].major;
                 dentalBox[0].append(dentalElem);
             }//end for loop
