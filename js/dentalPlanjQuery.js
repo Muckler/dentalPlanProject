@@ -1,4 +1,8 @@
 (function () {
+    var falsy = /^(?:f(?:alse)?|no?|0+)$/i;
+    Boolean.parse = function(val) { 
+     return !falsy.test(val) && !!val;
+    };
     "use strict";
     var userInput = {married: false, kids: false, ortho: false};
 
@@ -10,7 +14,7 @@
               event.preventDefault();
               event.stopPropagation();
             }
-            form.classList.add('was-validated');
+            form.classList.add('was-validated');``
           }, false);
         });
     }, false);
@@ -48,9 +52,13 @@
             userInput.ortho = true;
             console.log(userInput);
         }
-        console.log(userInput);
+        localStorage.setItem("marriedYN", userInput.married);
+        localStorage.setItem("kidsYN", userInput.kids);
+        localStorage.setItem("orthoYN", userInput.ortho);
+        window.location.href = "results.html";
     })
 
+    var userInput = { married: Boolean.parse(localStorage.getItem("marriedYN")), kids: Boolean.parse(localStorage.getItem("kidsYN")), ortho: Boolean.parse(localStorage.getItem("orthoYN")) };
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
     var url = "https://data.healthcare.gov/resource/dtk6-f38y.json";
     // API for Maryland schoolchildren data (Kindergarten  & 3rd grade)
@@ -87,7 +95,7 @@
         })
 
     // will receive userInput object below from event listener
-    var userInput = { married: false, kids: true, ortho: true };
+    //var userInput = { married: false, kids: true, ortho: true };
     console.log(userInput);
     //married function
     //below function for non married users
