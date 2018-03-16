@@ -7,24 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
-    <title>See Your Top 5 Dental Plans</title>
-    <script>
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                var forms = document.getElementsByClassName('needs-validation');
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                  form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                      event.preventDefault();
-                      event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                  }, false);
-                });
-            }, false);
-        })();
-    </script>
+    <title>See Your Top 5* Dental Plans</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -33,8 +16,6 @@
                 
             </div>
         </div>
-    </div>
-    <div class="container">
         <div class="row">
             <div class="col" id="form-intro">
                 <h1>Find the Best Dental Plans for Your Needs</h1>
@@ -81,16 +62,21 @@
                 </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div id="stats">
-
+        <div class="row" id="stats">
+                <div class="col-md stat-box box-bottom" id="stat1">
+                    <h5>% Visit To Dentist Last Year</h5>
                 </div>
-            </div>
+                <div class="col-md stat-box box-bottom" id="stat2">
+                    <h5>% Private Dental Insurance</h5>
+                </div>
+                <div class="col-md stat-box" id="stat3">
+                    <h5>% With Toothache Last Year</h5>
+                </div>
         </div>
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/dentalPlanQuery.js"></script>
+    <script src="js/dentalPlanjQuery.js"></script>
+    <script src="js/jquery.numscroller-1.0.js"></script>
 </body>
 </html>

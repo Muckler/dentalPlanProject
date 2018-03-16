@@ -1,56 +1,56 @@
-"use strict";
-/* Dan's java script
-
-$(".hidden").prop("disabled", true);
-
-// $("#yesKids").on("select", function() {
-//     console.log("select kids");
-//     $(".hidden").prop("disabled", false);
-// })
-
-// let kidsYN = $(".kids option:selected").text();
-// console.log(kidsYN);
-
-$(".kids").change(function() {
-    console.log(this);
-    if (this.value === "Yes") {
-        $(".hidden").prop("disabled", false);   
-    }
-
-})
-
-//this is a comment
-
-$("#submitButton").click(function() {
-    
-    let marriedYN = $("#maritalStatus option:selected").val();
-    let kidsYN = $("#kidsYN option:selected").val();
-    let orthoYN = $("#orthoYN option:selected").val();
-
-    if (marriedYN === "" || kidsYN === "") {
-        return alert("Please fill out form completely");
-    
-    }
-
-    let userInput = {married: false, kids: false, ortho: false};
-    
-    if(marriedYN === "Yes") {
-        userInput.married = true;
-    }
-
-    if (kidsYN === "Yes") {
-        userInput.kids = true;
-    }
-
-    if (orthoYN === "Yes") {
-        userInput.ortho = true;
-    }
-    
-    console.log(userInput);
-
-}) end Dans button*/
-
 (function () {
+    "use strict";
+    var userInput = {married: false, kids: false, ortho: false};
+
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+    }, false);
+
+    $(".hidden").prop("disabled", true);
+
+    $(".kids").change(function() {
+        console.log(this);
+        if (this.value === "Yes") {
+            $(".hidden").prop("disabled", false);   
+        } else {
+            $(".hidden").prop("disabled", true);   
+        }
+    })
+
+    $("#submitButton").click(function() {
+        console.log(userInput);
+        let marriedYN = $("#maritalStatus option:selected").val();
+        let kidsYN = $("#kidsYN option:selected").val();
+        let orthoYN = $("#orthoYN option:selected").val();
+        if (marriedYN === "" || kidsYN === "") {
+            console.log(userInput);
+            return alert("Please fill out form completely");
+        }
+        // let userInput = {married: false, kids: false, ortho: false};
+        if(marriedYN === "Yes") {
+            userInput.married = true;
+            console.log(userInput);
+        }
+        if (kidsYN === "Yes") {
+            userInput.kids = true;
+            console.log(userInput);
+        }
+        if (orthoYN === "Yes") {
+            userInput.ortho = true;
+            console.log(userInput);
+        }
+        console.log(userInput);
+    })
+
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
     var url = "https://data.healthcare.gov/resource/dtk6-f38y.json";
     // API for Maryland schoolchildren data (Kindergarten  & 3rd grade)
@@ -65,6 +65,7 @@ $("#submitButton").click(function() {
         console.log(error);
     })
 
+<<<<<<< HEAD
     $.get(url2).done(function (response) {
         let dentalStats = {};
         let dentalVisit12Mos = response.data[32][9];
@@ -78,6 +79,28 @@ $("#submitButton").click(function() {
     }).fail(function (error) {
         console.log(error);
     })
+=======
+        $.get(url2).done(function (response) {
+            // let dentalStats = {};
+            let dentalVisit12Mos = response.data[32][9];
+            let privateDentalIns = response.data[29][9];
+            let toothAche12Mos = response.data[44][9];
+            // dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
+            // dentalStats.privateDentalIns = Number(privateDentalIns);
+            // dentalStats.toothAche12Mos = Number(toothAche12Mos);
+            $('#stat1').append(`<span class='numscroller' data-min='0' data-max=${dentalVisit12Mos} data-delay='3' data-increment='1'></span>`);
+            $('#stat2').append(`<span class='numscroller' data-min='0' data-max=${privateDentalIns} data-delay='3' data-increment='1'></span>`);
+            $('#stat3').append(`<span class='numscroller' data-min='0' data-max=${toothAche12Mos} data-delay='3' data-increment='1'></span>`);
+
+            // let percentInsure = document.getElementById('stat1');
+            // let percentVisit = document.getElementById('stat2');
+            // let percentToothAche = document.getElementById('stat3');
+            // let appendStat1 = percentInsure.appendChild('span');
+        
+        }).fail(function (error) {
+            console.log(error);
+        })
+>>>>>>> refs/remotes/origin/master
 
     // will receive userInput object below from event listener
     var userInput = { married: false, kids: true, ortho: true };
@@ -429,6 +452,7 @@ $("#submitButton").click(function() {
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphM);
+<<<<<<< HEAD
                 var dentalBox = document.getElementsByClassName('plan1');
                 for (let m = 0; m < 4; m++) {
                     var dentalElem = document.createElement('p');
@@ -473,6 +497,9 @@ $("#submitButton").click(function() {
                 });
                 ;
             }//end ortho els        
+=======
+            }//end ortho els   
+>>>>>>> refs/remotes/origin/master
         }//end kids if
         //else no kids  and therefor do not show ortho & no ortho logic
         else {
@@ -582,6 +609,7 @@ $("#submitButton").click(function() {
             Individual(userInput, uniqueS);
         }
     }
+
     // handle XHR error
     function updateUIError() {
         var weatherBox = document.getElementById("dental");
