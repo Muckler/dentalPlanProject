@@ -3,9 +3,13 @@
     Boolean.parse = function(val) { 
      return !falsy.test(val) && !!val;
     };
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
     "use strict";
     var userInput = {married: false, kids: false, ortho: false};
-
+    
     window.addEventListener('load', function() {
         var forms = document.getElementsByClassName('needs-validation');
         var validation = Array.prototype.filter.call(forms, function(form) {
@@ -20,7 +24,6 @@
     }, false);
 
     $(".hidden").prop("disabled", true);
-
     $(".kids").change(function() {
         console.log(this);
         if (this.value === "Yes") {
@@ -36,22 +39,14 @@
         let marriedYN = $("#maritalStatus option:selected").val();
         let kidsYN = $("#kidsYN option:selected").val();
         let orthoYN = $("#orthoYN option:selected").val();
-        if (marriedYN === "" || kidsYN === "") {
-            console.log(userInput);
-            return alert("Please fill out form completely");
-        }
-        // let userInput = {married: false, kids: false, ortho: false};
         if(marriedYN === "Yes") {
             userInput.married = true;
-            console.log(userInput);
         }
         if (kidsYN === "Yes") {
             userInput.kids = true;
-            console.log(userInput);
         }
         if (orthoYN === "Yes") {
             userInput.ortho = true;
-            console.log(userInput);
         }
         localStorage.setItem("marriedYN", userInput.married);
         localStorage.setItem("kidsYN", userInput.kids);
@@ -74,26 +69,16 @@
         console.log(error);
     })
 
-        $.get(url2).done(function (response) {
-            // let dentalStats = {};
-            let dentalVisit12Mos = response.data[32][9];
-            let privateDentalIns = response.data[29][9];
-            let toothAche12Mos = response.data[44][9];
-            // dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
-            // dentalStats.privateDentalIns = Number(privateDentalIns);
-            // dentalStats.toothAche12Mos = Number(toothAche12Mos);
-            $('#stat1').append(`<span class='numscroller' data-min='0' data-max=${dentalVisit12Mos} data-delay='3' data-increment='1'></span>`);
-            $('#stat2').append(`<span class='numscroller' data-min='0' data-max=${privateDentalIns} data-delay='3' data-increment='1'></span>`);
-            $('#stat3').append(`<span class='numscroller' data-min='0' data-max=${toothAche12Mos} data-delay='3' data-increment='1'></span>`);
-
-            // let percentInsure = document.getElementById('stat1');
-            // let percentVisit = document.getElementById('stat2');
-            // let percentToothAche = document.getElementById('stat3');
-            // let appendStat1 = percentInsure.appendChild('span');
-        
-        }).fail(function (error) {
-            console.log(error);
-        })
+    $.get(url2).done(function (response) {
+        let dentalVisit12Mos = response.data[32][9];
+        let privateDentalIns = response.data[29][9];
+        let toothAche12Mos = response.data[44][9];
+        $('#stat1').append(`<span class='numscroller' data-min='0' data-max=${dentalVisit12Mos} data-delay='3' data-increment='1'></span>`);
+        $('#stat2').append(`<span class='numscroller' data-min='0' data-max=${privateDentalIns} data-delay='3' data-increment='1'></span>`);
+        $('#stat3').append(`<span class='numscroller' data-min='0' data-max=${toothAche12Mos} data-delay='3' data-increment='1'></span>`);
+    }).fail(function (error) {
+        console.log(error);
+    })
 
     // will receive userInput object below from event listener
     //var userInput = { married: false, kids: true, ortho: true };
@@ -102,7 +87,7 @@
     //below function for non married users
     function Individual(userInput, uniqueS) {
         var chartOutS = [];
-        if (userInput.kids == true) {
+        if (userInput.kidsYN == true) {
             //user selected ortho coverage for kids
             if (userInput.ortho == true) {
                 var graphS = [];
@@ -336,9 +321,9 @@
         console.log(uniqueM);
         var graphM = [];
         // code here if kids and another if else for ortho
-        if (userInput.kids == true) {
+        if (userInput.kidsYN == true) {
             //user selected ortho coverage for kids
-            if (userInput.ortho == true) {
+            if (userInput.orthoYN == true) {
                 //var graphMKO = [];    
                 //need to remove duplicate plans in data
                 for (let i = 0; i < 4; i++) {
