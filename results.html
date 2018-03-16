@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
     <link rel="stylesheet" href="css/styles.css">
 
     <title>Your Top 5 Dental Plans</title>
@@ -19,14 +19,15 @@
     </div>
     <div class="container results-wrapper">
         <div class="row">
-            <div class="col-6" class="plan1">
-                <h2 class="plan1-name">Dental Plan</h2>
+            <div class="col-6 plan1">
+                <!-- <h2 class="plan1-name">Dental Plan</h2>
                 <p>Cost:
                 <br>Major:
-                <br>Ortho:</p>
+                <br>Ortho:</p> -->
                 <!-- Add all other plan features as <p> tags -->
             </div>
             <div class="col-6" id="plan1-chart">
+                    <canvas id="myChart" width="400" height="400"></canvas>
                 
             </div>
         </div>
@@ -71,8 +72,13 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   
+    <!--<script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>-->
     <script src="js/dentalPlanjQuery.js"></script>
+    <script src="js/Chart.bundle.js"></script>
 </body>
 </html>

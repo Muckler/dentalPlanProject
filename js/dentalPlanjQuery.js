@@ -65,31 +65,31 @@ $("#submitButton").click(function() {
         console.log(error);
     })
 
-        $.get(url2).done(function (response) {
-            let dentalStats = {};
-            let dentalVisit12Mos = response.data[32][9];
-            let privateDentalIns = response.data[29][9];
-            let toothAche12Mos = response.data[44][9];
-            dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
-            dentalStats.privateDentalIns = Number(privateDentalIns);
-            dentalStats.toothAche12Mos = Number(toothAche12Mos);
-            $('#stats').innerHTML = '<span>' + dentalStats.dentalVisit12Mos + '</span>';
+    $.get(url2).done(function (response) {
+        let dentalStats = {};
+        let dentalVisit12Mos = response.data[32][9];
+        let privateDentalIns = response.data[29][9];
+        let toothAche12Mos = response.data[44][9];
+        dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
+        dentalStats.privateDentalIns = Number(privateDentalIns);
+        dentalStats.toothAche12Mos = Number(toothAche12Mos);
+        $('#stats').innerHTML = '<span>' + dentalStats.dentalVisit12Mos + '</span>';
 
-        }).fail(function (error) {
-            console.log(error);
-        })
+    }).fail(function (error) {
+        console.log(error);
+    })
 
     // will receive userInput object below from event listener
-    var userInput = { married: false, kids: true, ortho: true };
+    var userInput = { married: false, kids: false, ortho: false };
     console.log(userInput);
     //married function
     //below function for non married users
-    function Individual(userInput, uniqueS) { 
+    function Individual(userInput, uniqueS) {
         var chartOutS = [];
         if (userInput.kids == true) {
             //user selected ortho coverage for kids
             if (userInput.ortho == true) {
-                var graphS = [];    
+                var graphS = [];
                 for (let i = 0; i < 4; i++) {
                     let chartOutS = {};
                     chartOutS.planName = uniqueS[i].issuer_name;
@@ -102,18 +102,18 @@ $("#submitButton").click(function() {
                 }//end for loop
                 var uniqueMNum = [];
                 //convert string values to number couple_1_child_age_21
-                uniqueS.forEach(function(element) {
+                uniqueS.forEach(function (element) {
                     uniqueMNum.push(Number(element.individual_1_child_age_21));
                 });
                 //remove NaN values from uniqueMNum
                 var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
                 console.log("filtered code");
-                console.log(uniqueNaNgo);  
+                console.log(uniqueNaNgo);
                 //max cost of plan
-                var maxC = Math.max.apply(null, uniqueNaNgo) ;
+                var maxC = Math.max.apply(null, uniqueNaNgo);
                 // min cost of plan
                 var minC = Math.min.apply(null, uniqueNaNgo);
-                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
+                var totalC = uniqueNaNgo.reduce(function (a, b) { return a + b; });
                 //toFixed limits to 2 decimal places the avg cost
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
@@ -121,47 +121,47 @@ $("#submitButton").click(function() {
                 var dentalBox = document.getElementsByClassName('plan1');
                 for (let m = 0; m < 4; m++) {
                     var dentalElem = document.createElement('p');
-                    dentalElem.innerHTML ="Plan Name:  " + graphS[m].planName+ "<br />" + "Plan Phone #:  " + graphS[m].phone +
-                    "<br />" + "Cost of Dental Plan:  " + graphS[m].cost +
-                    "<br />" + "Ortho Coverage for Kids:  " + graphS[m].ortho
-                    + "<br />" + "Major Coverage:  " + graphS[m].major;
+                    dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
+                        "<br />" + "Cost of Dental Plan:  " + graphS[m].cost +
+                        "<br />" + "Ortho Coverage for Kids:  " + graphS[m].ortho
+                        + "<br />" + "Major Coverage:  " + graphS[m].major;
                     dentalBox[0].append(dentalElem);
                 }//end for loop
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["My Plan", "Average Plan"],
-        datasets: [{
-            label: 'Plan Cost in Dollars',
-            data: [graphS[0].cost, avgC ],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-;
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["My Plan", "Average Plan"],
+                        datasets: [{
+                            label: 'Plan Cost in Dollars',
+                            data: [graphS[0].cost, avgC],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+                ;
 
             }//end ortho if
             //need else if no ortho and have kids
@@ -180,33 +180,68 @@ var myChart = new Chart(ctx, {
                 graphS.push(chartOutS);
             }//end for 
             var uniqueMNum = [];
-                //convert string values to number couple_1_child_age_21
-                uniqueS.forEach(function(element) {
-                    uniqueMNum.push(Number(element.premium_adult_individual_age_21));
-                });
-                //remove NaN values from uniqueMNum
-                var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
-                console.log("filtered code");
-                console.log(uniqueNaNgo);  
-                //max cost of plan
-                var maxC = Math.max.apply(null, uniqueNaNgo) ;
-                // min cost of plan
-                var minC = Math.min.apply(null, uniqueNaNgo);
-                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
-                //toFixed limits to 2 decimal places the avg cost
-                var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
-                console.log(maxC, minC, avgC);
+            //convert string values to number couple_1_child_age_21
+            uniqueS.forEach(function (element) {
+                uniqueMNum.push(Number(element.premium_adult_individual_age_21));
+            });
+            //remove NaN values from uniqueMNum
+            var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
+            console.log("filtered code");
+            console.log(uniqueNaNgo);
+            //max cost of plan
+            var maxC = Math.max.apply(null, uniqueNaNgo);
+            // min cost of plan
+            var minC = Math.min.apply(null, uniqueNaNgo);
+            var totalC = uniqueNaNgo.reduce(function (a, b) { return a + b; });
+            //toFixed limits to 2 decimal places the avg cost
+            var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
+            console.log(maxC, minC, avgC);
             console.log(graphS);
             var dentalBox = document.getElementsByClassName('plan1');
-                for (let m = 0; m < 4; m++) {
-                    var dentalElem = document.createElement('p');
-                    dentalElem.innerHTML ="Plan Name:  " + graphS[m].planName+ "<br />" + "Plan Phone #:  " + graphS[m].phone +
+            for (let m = 0; m < 4; m++) {
+                var dentalElem = document.createElement('p');
+                dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
                     "<br />" + "Cost of Dental Plan:  " + graphS[m].cost +
                     "<br />" + "Major Coverage:  " + graphS[m].major;
-                    dentalBox[0].append(dentalElem);
-                }//end for loop
+                dentalBox[0].append(dentalElem);
+            }//end for loop
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["My Plan", "Average Plan"],
+                    datasets: [{
+                        label: 'Plan Cost in Dollars',
+                        data: [graphS[0].cost, avgC],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+            ;    
         }//end else no kids
-         //return graphS;
+        //return graphS;
     }//end individual function
     function Married(userInput, uniqueM) {
         console.log(uniqueM);
@@ -230,18 +265,18 @@ var myChart = new Chart(ctx, {
                 //starting code for max min avg
                 var uniqueMNum = [];
                 //convert string values to number couple_1_child_age_21
-                uniqueM.forEach(function(element) {
+                uniqueM.forEach(function (element) {
                     uniqueMNum.push(Number(element.couple_1_child_age_21));
                 });
                 //remove NaN values from uniqueMNum
                 var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
                 console.log("filtered code");
-                console.log(uniqueNaNgo);  
+                console.log(uniqueNaNgo);
                 //max cost of plan
-                var maxC = Math.max.apply(null, uniqueNaNgo) ;
+                var maxC = Math.max.apply(null, uniqueNaNgo);
                 // min cost of plan
                 var minC = Math.min.apply(null, uniqueNaNgo);
-                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
+                var totalC = uniqueNaNgo.reduce(function (a, b) { return a + b; });
                 //toFixed limits to 2 decimal places the avg cost
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
@@ -249,12 +284,48 @@ var myChart = new Chart(ctx, {
                 var dentalBox = document.getElementsByClassName('plan1');
                 for (let m = 0; m < 4; m++) {
                     var dentalElem = document.createElement('p');
-                    dentalElem.innerHTML ="Plan Name:  " + graphM[m].planName+ "<br />" + "Plan Phone #:  " + graphM[m].phone +
-                    "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
-                    "<br />" + "Ortho Coverage for Kids:  " + graphM[m].ortho
-                    + "<br />" + "Major Coverage:  " + graphM[m].major;
+                    dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
+                        "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
+                        "<br />" + "Ortho Coverage for Kids:  " + graphM[m].ortho
+                        + "<br />" + "Major Coverage:  " + graphM[m].major;
                     dentalBox[0].append(dentalElem);
                 }//end for loop
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["My Plan", "Average Plan"],
+                        datasets: [{
+                            label: 'Plan Cost in Dollars',
+                            data: [graphM[0].cost, avgC],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+                ;
+
             }//end orth if
             //no ortho displayed
             else {
@@ -269,18 +340,18 @@ var myChart = new Chart(ctx, {
                 }//end for loop
                 var uniqueMNum = [];
                 //convert string values to number couple_1_child_age_21
-                uniqueM.forEach(function(element) {
+                uniqueM.forEach(function (element) {
                     uniqueMNum.push(Number(element.premium_couple_21));
                 });
                 //remove NaN values from uniqueMNum
                 var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
                 console.log("filtered code");
-                console.log(uniqueNaNgo);  
+                console.log(uniqueNaNgo);
                 //max cost of plan
-                var maxC = Math.max.apply(null, uniqueNaNgo) ;
+                var maxC = Math.max.apply(null, uniqueNaNgo);
                 // min cost of plan
                 var minC = Math.min.apply(null, uniqueNaNgo);
-                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
+                var totalC = uniqueNaNgo.reduce(function (a, b) { return a + b; });
                 //toFixed limits to 2 decimal places the avg cost
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
@@ -288,11 +359,46 @@ var myChart = new Chart(ctx, {
                 var dentalBox = document.getElementsByClassName('plan1');
                 for (let m = 0; m < 4; m++) {
                     var dentalElem = document.createElement('p');
-                    dentalElem.innerHTML ="Plan Name:  " + graphM[m].planName+ "<br />" + "Plan Phone #:  " + graphM[m].phone +
-                    "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
-                    "<br />" +  "Major Coverage:  " + graphM[m].major;
+                    dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
+                        "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
+                        "<br />" + "Major Coverage:  " + graphM[m].major;
                     dentalBox[0].append(dentalElem);
                 }//end for loop
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["My Plan", "Average Plan"],
+                        datasets: [{
+                            label: 'Plan Cost in Dollars',
+                            data: [graphM[0].cost, avgC],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+                ;
             }//end ortho els        
         }//end kids if
         //else no kids  and therefor do not show ortho & no ortho logic
@@ -307,31 +413,66 @@ var myChart = new Chart(ctx, {
                 graphM.push(chartOutM);
             }//end for 
             var uniqueMNum = [];
-                //convert string values to number couple_1_child_age_21
-                uniqueM.forEach(function(element) {
-                    uniqueMNum.push(Number(element.premium_couple_21));
-                });
-                //remove NaN values from uniqueMNum
-                var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
-                console.log("filtered code");
-                console.log(uniqueNaNgo);  
-                //max cost of plan
-                var maxC = Math.max.apply(null, uniqueNaNgo) ;
-                // min cost of plan
-                var minC = Math.min.apply(null, uniqueNaNgo);
-                var totalC = uniqueNaNgo.reduce(function(a,b) {return a + b;});
-                //toFixed limits to 2 decimal places the avg cost
-                var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
-                console.log(maxC, minC, avgC);
-                console.log(graphM);
-                var dentalBox = document.getElementsByClassName('plan1');
-                for (let m = 0; m < 4; m++) {
-                    var dentalElem = document.createElement('p');
-                    dentalElem.innerHTML ="Plan Name:  " + graphM[m].planName+ "<br />" + "Plan Phone #:  " + graphM[m].phone +
+            //convert string values to number couple_1_child_age_21
+            uniqueM.forEach(function (element) {
+                uniqueMNum.push(Number(element.premium_couple_21));
+            });
+            //remove NaN values from uniqueMNum
+            var uniqueNaNgo = uniqueMNum.filter(unique => unique >= 0);
+            console.log("filtered code");
+            console.log(uniqueNaNgo);
+            //max cost of plan
+            var maxC = Math.max.apply(null, uniqueNaNgo);
+            // min cost of plan
+            var minC = Math.min.apply(null, uniqueNaNgo);
+            var totalC = uniqueNaNgo.reduce(function (a, b) { return a + b; });
+            //toFixed limits to 2 decimal places the avg cost
+            var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
+            console.log(maxC, minC, avgC);
+            console.log(graphM);
+            var dentalBox = document.getElementsByClassName('plan1');
+            for (let m = 0; m < 4; m++) {
+                var dentalElem = document.createElement('p');
+                dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
                     "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
-                    "<br />" +  "Major Coverage:  " + graphM[m].major;
-                    dentalBox[0].append(dentalElem);
-                }//end for loop
+                    "<br />" + "Major Coverage:  " + graphM[m].major;
+                dentalBox[0].append(dentalElem);
+            }//end for loop
+            var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["My Plan", "Average Plan"],
+                        datasets: [{
+                            label: 'Plan Cost in Dollars',
+                            data: [graphM[0].cost, avgC],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+                ;
         }//end else
         return graphM;
     }//end married function
@@ -346,9 +487,9 @@ var myChart = new Chart(ctx, {
         })
         //removing duplicate plans that have some cost for cost for married 
         var uniqueM = marriedData.filter(
-            function(a){if (!this[a.couple_1_child_age_21]) {this[a.couple_1_child_age_21] = 1; return a;}},
+            function (a) { if (!this[a.couple_1_child_age_21]) { this[a.couple_1_child_age_21] = 1; return a; } },
             {}
-           );
+        );
         console.log(uniqueM);
         //sorting data from cheapest cost to most expensive
         var singleData = theData.sort((a, b) => {
@@ -356,9 +497,9 @@ var myChart = new Chart(ctx, {
         })
         //removing duplicate plans that have same cost for cost individual
         var uniqueS = singleData.filter(
-            function(a){if (!this[a.couple_1_child_age_21]) {this[a.couple_1_child_age_21] = 1; return a;}},
+            function (a) { if (!this[a.couple_1_child_age_21]) { this[a.couple_1_child_age_21] = 1; return a; } },
             {}
-           );
+        );
         console.log(uniqueS);
 
         if (userInput.married == true) {
