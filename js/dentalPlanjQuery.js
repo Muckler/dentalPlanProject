@@ -1,7 +1,12 @@
 (function () {
+    var falsy = /^(?:f(?:alse)?|no?|0+)$/i;
+    Boolean.parse = function(val) { 
+     return !falsy.test(val) && !!val;
+    };
+
     "use strict";
     var userInput = {married: false, kids: false, ortho: false};
-
+    
     window.addEventListener('load', function() {
         var forms = document.getElementsByClassName('needs-validation');
         var validation = Array.prototype.filter.call(forms, function(form) {
@@ -16,7 +21,6 @@
     }, false);
 
     $(".hidden").prop("disabled", true);
-
     $(".kids").change(function() {
         console.log(this);
         if (this.value === "Yes") {
@@ -26,30 +30,27 @@
         }
     })
 
-    $("#submitButton").click(function() {
-        console.log(userInput);
+    $("#submitButton").click(function(e) {
+        e.preventDefault();
         let marriedYN = $("#maritalStatus option:selected").val();
         let kidsYN = $("#kidsYN option:selected").val();
         let orthoYN = $("#orthoYN option:selected").val();
-        if (marriedYN === "" || kidsYN === "") {
-            console.log(userInput);
-            return alert("Please fill out form completely");
-        }
-        // let userInput = {married: false, kids: false, ortho: false};
         if(marriedYN === "Yes") {
             userInput.married = true;
-            console.log(userInput);
         }
         if (kidsYN === "Yes") {
             userInput.kids = true;
-            console.log(userInput);
         }
         if (orthoYN === "Yes") {
             userInput.ortho = true;
-            console.log(userInput);
         }
-        console.log(userInput);
+        localStorage.setItem("marriedYN", userInput.married);
+        localStorage.setItem("kidsYN", userInput.kids);
+        localStorage.setItem("orthoYN", userInput.ortho);
+        window.location.href = "results.html";
     })
+
+    var userInput = { married: Boolean.parse(localStorage.getItem("marriedYN")), kids: Boolean.parse(localStorage.getItem("kidsYN")), ortho: Boolean.parse(localStorage.getItem("orthoYN")) };
 
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
     var url = "https://data.healthcare.gov/resource/dtk6-f38y.json";
@@ -65,37 +66,25 @@
         console.log(error);
     })
 
-        $.get(url2).done(function (response) {
-            // let dentalStats = {};
-            let dentalVisit12Mos = response.data[32][9];
-            let privateDentalIns = response.data[29][9];
-            let toothAche12Mos = response.data[44][9];
-            // dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
-            // dentalStats.privateDentalIns = Number(privateDentalIns);
-            // dentalStats.toothAche12Mos = Number(toothAche12Mos);
-            $('#stat1').append(`<span class='numscroller' data-min='0' data-max=${dentalVisit12Mos} data-delay='3' data-increment='1'></span><span style="font-size:45px;">%</span>`);
-            $('#stat2').append(`<span class='numscroller' data-min='0' data-max=${privateDentalIns} data-delay='3' data-increment='1'></span><span style="font-size:45px;">%</span>`);
-            $('#stat3').append(`<span class='numscroller' data-min='0' data-max=${toothAche12Mos} data-delay='3' data-increment='1'></span><span style="font-size:45px;">%</span>`);
-
-            // let percentInsure = document.getElementById('stat1');
-            // let percentVisit = document.getElementById('stat2');
-            // let percentToothAche = document.getElementById('stat3');
-            // let appendStat1 = percentInsure.appendChild('span');
-        
-        }).fail(function (error) {
-            console.log(error);
-        })
+    $.get(url2).done(function (response) {
+        let dentalVisit12Mos = response.data[32][9];
+        let privateDentalIns = response.data[29][9];
+        let toothAche12Mos = response.data[44][9];
+        $('#stat1').append(`<span class='numscroller' data-min='0' data-max=${dentalVisit12Mos} data-delay='3' data-increment='1'></span>`);
+        $('#stat2').append(`<span class='numscroller' data-min='0' data-max=${privateDentalIns} data-delay='3' data-increment='1'></span>`);
+        $('#stat3').append(`<span class='numscroller' data-min='0' data-max=${toothAche12Mos} data-delay='3' data-increment='1'></span>`);
+    }).fail(function (error) {
+        console.log(error);
+    })
 
     // will receive userInput object below from event listener
-    var userInput = { married: false, kids: false, ortho: true };
-    console.log(userInput);
     //married function
     //below function for non married users
     function Individual(userInput, uniqueS) {
         var chartOutS = [];
-        if (userInput.kids == true) {
+        if (userInput.kidsYN == true) {
             //user selected ortho coverage for kids
-            if (userInput.ortho == true) {
+            if (userInput.orthoYN == true) {
                 var graphS = [];    
                 for (let i = 0; i < 4; i++) {
                     let chartOutS = {};
@@ -166,9 +155,9 @@
         console.log(uniqueM);
         var graphM = [];
         // code here if kids and another if else for ortho
-        if (userInput.kids == true) {
+        if (userInput.kidsYN == true) {
             //user selected ortho coverage for kids
-            if (userInput.ortho == true) {
+            if (userInput.orthoYN == true) {
                 //var graphMKO = [];    
                 //need to remove duplicate plans in data
                 for (let i = 0; i < 4; i++) {
@@ -201,14 +190,19 @@
                 //will return value of graphMKO instead of below to insert in graphic
                 //below code will be deleted when integrate with html
 
-                $('#plan1-name').innerHTML = "Plan Name: " + graphM[m].planName;
+                // $('#plan1-name').innerHTML = "Plan Name: " + graphM[m].planName;
 
-                for (let m = 0; m < 4; m++) {dentalBox.innerHTML = "<p>" + "Plane Name:  " + graphM[m].planName+ "<br />" + "Plan Phone #:  " + graphM[m].phone +
-                "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
-                "<br />" + "Ortho Coverage for Kids:  " + graphM[m].ortho
-                + "<br />" + "<br />" + "<br />" + "Major Coverage:  " + graphM[m].major + "</p>";}
-                
-            }//end orth if
+                for (let m = 0; m < 4; m++) {
+                    var idname = ".plan" + (m+1).toString();
+                    console.log("----------------------------"+idname);
+                    var planname = "#plan"+(m+1).toString()+"-name";
+                    console.log(planname);
+                    $(".plan1").innerHTML = "Plan Name: " + graphM[m].planName;
+                    $(idname).innerHTML = "<p>Plan Phone #:  " + graphM[m].phone +
+                    "<br />" + "Cost of Dental Plan:  " + graphM[m].cost +
+                    "<br />" + "Ortho Coverage for Kids:  " + graphM[m].ortho
+                    + "<br />" + "<br />" + "<br />" + "Major Coverage:  " + graphM[m].major + "</p>";}
+                }//end orth if
             //no ortho displayed
             else {
                 console.log(uniqueM);
