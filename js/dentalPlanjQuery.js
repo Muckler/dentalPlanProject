@@ -30,8 +30,9 @@
         }
     })
 
-    $("#submitButton").click(function() {
+    $("#submitButton").click(function(e) {
         console.log(userInput);
+        e.preventDefault();
         let marriedYN = $("#maritalStatus option:selected").val();
         let kidsYN = $("#kidsYN option:selected").val();
         let orthoYN = $("#orthoYN option:selected").val();
