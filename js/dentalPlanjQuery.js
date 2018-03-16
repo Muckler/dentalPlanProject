@@ -65,21 +65,6 @@
         console.log(error);
     })
 
-<<<<<<< HEAD
-    $.get(url2).done(function (response) {
-        let dentalStats = {};
-        let dentalVisit12Mos = response.data[32][9];
-        let privateDentalIns = response.data[29][9];
-        let toothAche12Mos = response.data[44][9];
-        dentalStats.dentalVisit12Mos = Number(dentalVisit12Mos);
-        dentalStats.privateDentalIns = Number(privateDentalIns);
-        dentalStats.toothAche12Mos = Number(toothAche12Mos);
-        $('#stats').innerHTML = '<span>' + dentalStats.dentalVisit12Mos + '</span>';
-
-    }).fail(function (error) {
-        console.log(error);
-    })
-=======
         $.get(url2).done(function (response) {
             // let dentalStats = {};
             let dentalVisit12Mos = response.data[32][9];
@@ -100,7 +85,6 @@
         }).fail(function (error) {
             console.log(error);
         })
->>>>>>> refs/remotes/origin/master
 
     // will receive userInput object below from event listener
     var userInput = { married: false, kids: true, ortho: true };
@@ -452,7 +436,6 @@
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphM);
-<<<<<<< HEAD
                 var dentalBox = document.getElementsByClassName('plan1');
                 for (let m = 0; m < 4; m++) {
                     var dentalElem = document.createElement('p');
@@ -497,9 +480,6 @@
                 });
                 ;
             }//end ortho els        
-=======
-            }//end ortho els   
->>>>>>> refs/remotes/origin/master
         }//end kids if
         //else no kids  and therefor do not show ortho & no ortho logic
         else {
