@@ -3,13 +3,14 @@
     Boolean.parse = function(val) { 
      return !falsy.test(val) && !!val;
     };
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/master
     "use strict";
-    var userInput = {married: false, kids: false, ortho: false};
-    
+    var userInput = {};
+
+    if(localStorage.getItem("marriedYN") === null || localStorage.getItem("kidsYN") === null || localStorage.getItem("orthoYN") === null){
+        userInput = {married: false, kids: false, ortho: false};
+    }else{
+        userInput = { married: Boolean.parse(localStorage.getItem("marriedYN")), kids: Boolean.parse(localStorage.getItem("kidsYN")), ortho: Boolean.parse(localStorage.getItem("orthoYN")) };
+    }
     window.addEventListener('load', function() {
         var forms = document.getElementsByClassName('needs-validation');
         var validation = Array.prototype.filter.call(forms, function(form) {
@@ -51,10 +52,13 @@
         localStorage.setItem("marriedYN", userInput.married);
         localStorage.setItem("kidsYN", userInput.kids);
         localStorage.setItem("orthoYN", userInput.ortho);
+        userInput = { married: Boolean.parse(localStorage.getItem("marriedYN")), kids: Boolean.parse(localStorage.getItem("kidsYN")), ortho: Boolean.parse(localStorage.getItem("orthoYN")) };
+        
         window.location.href = "results.html";
+        
     })
 
-    var userInput = { married: Boolean.parse(localStorage.getItem("marriedYN")), kids: Boolean.parse(localStorage.getItem("kidsYN")), ortho: Boolean.parse(localStorage.getItem("orthoYN")) };
+    
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
     var url = "https://data.healthcare.gov/resource/dtk6-f38y.json";
     // API for Maryland schoolchildren data (Kindergarten  & 3rd grade)
@@ -277,7 +281,8 @@
                 dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
                     "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost +
                     "<br />" + "Major Coverage:  " + graphS[m].major;
-                dentalBox[0].append(dentalElem);
+                //dentalBox[0].append(dentalElem);
+                console.log(dentalBox);
             }//end for loop
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
