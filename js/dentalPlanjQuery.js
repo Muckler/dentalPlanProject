@@ -107,7 +107,7 @@
                     let chartOutS = {};
                     chartOutS.planName = uniqueS[i].issuer_name;
                     chartOutS.phone = uniqueS[i].customer_service_phone_number_toll_free;
-                    chartOutS.cost = Number(uniqueS[i].premium_adult_individual_age_21);
+                    chartOutS.cost = Number(uniqueS[i].individual_1_child_age_21);
                     chartOutS.major = uniqueS[i].major_dental_care_adult;
                     //adding elements of chartOutSKO to return graphMKO to graph
                     graphS.push(chartOutS);
@@ -270,7 +270,6 @@
                     chartOutM.major = uniqueM[i].major_dental_care_adult;
                     graphM.push(chartOutM);
                 }//end for loop
-
                 //starting code for max min avg
                 var uniqueMNum = [];
                 //convert string values to number couple_1_child_age_21
@@ -343,7 +342,7 @@
                     let chartOutM = {};
                     chartOutM.planName = uniqueM[i].issuer_name;
                     chartOutM.phone = uniqueM[i].customer_service_phone_number_toll_free;
-                    chartOutM.cost = Number(uniqueM[i].premium_couple_21);
+                    chartOutM.cost = Number(uniqueM[i].couple_1_child_age_21);
                     chartOutM.major = uniqueM[i].major_dental_care_adult;
                     graphM.push(chartOutM);
                 }//end for loop
