@@ -35,6 +35,7 @@
 
 .results-wrapper {
     width: 80%;
+    margin-top: 5%;
 }
 
 @media only screen and (max-width: 767px) {
@@ -203,5 +204,15 @@ label {
 
 .stat-box {
     line-height: 1;
+}
+
+h5 {
+    margin-bottom: 5px;
+}
+
+.footer {
+    background-color: rgb(31, 65, 201);
+    margin: 20px 0 0 0;
+    padding: 30px;
 }
 

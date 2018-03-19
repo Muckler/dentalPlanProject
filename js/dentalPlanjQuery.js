@@ -54,14 +54,19 @@
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphS);
-                var dentalBox = document.getElementsByClassName('plan1');
+                // var dentalBox = document.getElementsByClassName('plan1');
+                // for (let m = 0; m < 4; m++) {
+                //     var dentalElem = document.createElement('p');
+                //     dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
+                //         "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost +
+                //         "<br />" + "Ortho Coverage for Kids:  " + graphS[m].ortho
+                //         + "<br />" + "Major Coverage:  " + graphS[m].major;
+                //     dentalBox[0].append(dentalElem);
                 for (let m = 0; m < 4; m++) {
-                    var dentalElem = document.createElement('p');
-                    dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
-                        "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost +
-                        "<br />" + "Ortho Coverage for Kids:  " + graphS[m].ortho
-                        + "<br />" + "Major Coverage:  " + graphS[m].major;
-                    dentalBox[0].append(dentalElem);
+                    var planName = '.plan' + (m + 1) + '-name';
+                    var planInfo = '.plan' + (m + 1);
+                    $(planName).html(`${graphS[m].planName}`);
+                    $(planInfo).append(`<p>Plan Phone Number:  ${graphS[m].phone}<br>Cost of Dental Plan:  $${graphS[m].cost}<br>Ortho Coverage for Kids:  ${graphS[m].ortho}<br>Major Coverage:  ${graphS[m].major}</p>`);
                 }//end for loop
                 var ctx = document.getElementById("myChart");
                 var myChart = new Chart(ctx, {
@@ -130,13 +135,18 @@
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphS);
-                var dentalBox = document.getElementsByClassName('plan1');
+                // var dentalBox = document.getElementsByClassName('plan1');
+                // for (let m = 0; m < 4; m++) {
+                //     var dentalElem = document.createElement('p');
+                //     dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
+                //         "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost 
+                //         + "<br />" + "Major Coverage:  " + graphS[m].major;
+                //     dentalBox[0].append(dentalElem);
                 for (let m = 0; m < 4; m++) {
-                    var dentalElem = document.createElement('p');
-                    dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
-                        "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost 
-                        + "<br />" + "Major Coverage:  " + graphS[m].major;
-                    dentalBox[0].append(dentalElem);
+                    var planName = '.plan' + (m + 1) + '-name';
+                    var planInfo = '.plan' + (m + 1);
+                    $(planName).html(`${graphS[m].planName}`);
+                    $(planInfo).append(`<p>Plan Phone Number:  ${graphS[m].phone}<br>Cost of Dental Plan:  $${graphS[m].cost}<br>Major Coverage:  ${graphS[m].major}</p>`);
                 }//end for loop
                 var ctx = document.getElementById("myChart");
                 var myChart = new Chart(ctx, {
@@ -206,13 +216,18 @@
             var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
             console.log(maxC, minC, avgC);
             console.log(graphS);
-            var dentalBox = document.getElementsByClassName('plan1');
+            // var dentalBox = document.getElementsByClassName('plan1');
+            // for (let m = 0; m < 4; m++) {
+            //     var dentalElem = document.createElement('p');
+            //     dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
+            //         "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost +
+            //         "<br />" + "Major Coverage:  " + graphS[m].major;
+            //     dentalBox[0].append(dentalElem);
             for (let m = 0; m < 4; m++) {
-                var dentalElem = document.createElement('p');
-                dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
-                    "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost +
-                    "<br />" + "Major Coverage:  " + graphS[m].major;
-                dentalBox[0].append(dentalElem);
+                var planName = '.plan' + (m + 1) + '-name';
+                var planInfo = '.plan' + (m + 1);
+                $(planName).html(`${graphS[m].planName}`);
+                $(planInfo).append(`<p>Plan Phone Number:  ${graphS[m].phone}<br>Cost of Dental Plan:  $${graphS[m].cost}<br>Major Coverage:  ${graphS[m].major}</p>`);
             }//end for loop
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
@@ -289,14 +304,19 @@
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphM);
-                var dentalBox = document.getElementsByClassName('plan1');
+                // var dentalBox = document.getElementsByClassName('plan1');
+                // for (let m = 0; m < 4; m++) {
+                //     var dentalElem = document.createElement('p');
+                //     dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
+                //         "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
+                //         "<br />" + "Ortho Coverage for Kids:  " + graphM[m].ortho
+                //         + "<br />" + "Major Coverage:  " + graphM[m].major;
+                //     dentalBox[0].append(dentalElem);
                 for (let m = 0; m < 4; m++) {
-                    var dentalElem = document.createElement('p');
-                    dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
-                        "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
-                        "<br />" + "Ortho Coverage for Kids:  " + graphM[m].ortho
-                        + "<br />" + "Major Coverage:  " + graphM[m].major;
-                    dentalBox[0].append(dentalElem);
+                    var planName = '.plan' + (m + 1) + '-name';
+                    var planInfo = '.plan' + (m + 1);
+                    $(planName).html(`${graphM[m].planName}`);
+                    $(planInfo).append(`<p>Plan Phone Number:  ${graphM[m].phone}<br>Cost of Dental Plan:  $${graphM[m].cost}<br>Ortho Coverage for Kids:  ${graphM[m].ortho}<br>Major Coverage:  ${graphM[m].major}</p>`);
                 }//end for loop
                 var ctx = document.getElementById("myChart");
                 var myChart = new Chart(ctx, {
@@ -364,13 +384,18 @@
                 var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
                 console.log(maxC, minC, avgC);
                 console.log(graphM);
-                var dentalBox = document.getElementsByClassName('plan1');
+                // var dentalBox = document.getElementsByClassName('plan1');
+                // for (let m = 0; m < 4; m++) {
+                //     var dentalElem = document.createElement('p');
+                //     dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
+                //         "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
+                //         "<br />" + "Major Coverage:  " + graphM[m].major;
+                //     dentalBox[0].append(dentalElem);
                 for (let m = 0; m < 4; m++) {
-                    var dentalElem = document.createElement('p');
-                    dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
-                        "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
-                        "<br />" + "Major Coverage:  " + graphM[m].major;
-                    dentalBox[0].append(dentalElem);
+                    var planName = '.plan' + (m + 1) + '-name';
+                    var planInfo = '.plan' + (m + 1);
+                    $(planName).html(`${graphM[m].planName}`);
+                    $(planInfo).append(`<p>Plan Phone Number:  ${graphM[m].phone}<br>Cost of Dental Plan:  $${graphM[m].cost}<br>Major Coverage:  ${graphM[m].major}</p>`);
                 }//end for loop
                 var ctx = document.getElementById("myChart");
                 var myChart = new Chart(ctx, {
@@ -438,13 +463,18 @@
             var avgC = (totalC / uniqueNaNgo.length).toFixed(2);
             console.log(maxC, minC, avgC);
             console.log(graphM);
-            var dentalBox = document.getElementsByClassName('plan1');
+            // var dentalBox = document.getElementsByClassName('plan1');
+            // for (let m = 0; m < 4; m++) {
+            //     var dentalElem = document.createElement('p');
+            //     dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
+            //         "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
+            //         "<br />" + "Major Coverage:  " + graphM[m].major;
+            //     dentalBox[0].append(dentalElem);
             for (let m = 0; m < 4; m++) {
-                var dentalElem = document.createElement('p');
-                dentalElem.innerHTML = "Plan Name:  " + graphM[m].planName + "<br />" + "Plan Phone #:  " + graphM[m].phone +
-                    "<br />" + "Cost of Dental Plan:  $" + graphM[m].cost +
-                    "<br />" + "Major Coverage:  " + graphM[m].major;
-                dentalBox[0].append(dentalElem);
+                var planName = '.plan' + (m + 1) + '-name';
+                var planInfo = '.plan' + (m + 1);
+                $(planName).html(`${graphM[m].planName}`);
+                $(planInfo).append(`<p>Plan Phone Number: ${graphM[m].phone}<br>Cost of Dental Plan:  $${graphM[m].cost}<br>Major Coverage: ${graphM[m].major}</p>`);
             }//end for loop
             var ctx = document.getElementById("myChart");
                 var myChart = new Chart(ctx, {
@@ -457,7 +487,6 @@
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
-
                             ],
                             borderColor: [
                                 'rgba(255,99,132,1)',
