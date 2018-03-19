@@ -3,67 +3,12 @@
     Boolean.parse = function(val) { 
      return !falsy.test(val) && !!val;
     };
-    "use strict";
-    var userInput = {};
-
-    if(localStorage.getItem("marriedYN") === null || localStorage.getItem("kidsYN") === null || localStorage.getItem("orthoYN") === null){
-        userInput = {married: false, kids: false, ortho: false};
-    }else{
-        userInput = { married: Boolean.parse(localStorage.getItem("marriedYN")), kids: Boolean.parse(localStorage.getItem("kidsYN")), ortho: Boolean.parse(localStorage.getItem("orthoYN")) };
-    }
-    window.addEventListener('load', function() {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');``
-          }, false);
-        });
-    }, false);
-
-    $(".hidden").prop("disabled", true);
-    $(".kids").change(function() {
-        console.log(this);
-        if (this.value === "Yes") {
-            $(".hidden").prop("disabled", false);   
-        } else {
-            $(".hidden").prop("disabled", true);   
-        }
-    })
-
-    $("#submitButton").click(function(e) {
-        console.log(userInput);
-        e.preventDefault();
-        let marriedYN = $("#maritalStatus option:selected").val();
-        let kidsYN = $("#kidsYN option:selected").val();
-        let orthoYN = $("#orthoYN option:selected").val();
-        if(marriedYN === "Yes") {
-            userInput.married = true;
-        }
-        if (kidsYN === "Yes") {
-            userInput.kids = true;
-        }
-        if (orthoYN === "Yes") {
-            userInput.ortho = true;
-        }
-        localStorage.setItem("marriedYN", userInput.married);
-        localStorage.setItem("kidsYN", userInput.kids);
-        localStorage.setItem("orthoYN", userInput.ortho);
-        userInput = { married: Boolean.parse(localStorage.getItem("marriedYN")), kids: Boolean.parse(localStorage.getItem("kidsYN")), ortho: Boolean.parse(localStorage.getItem("orthoYN")) };
-        
-        window.location.href = "results.html";
-        
-    })
-
-    
+    var userInput = { married: Boolean.parse(localStorage.getItem("marriedYN")), kids: Boolean.parse(localStorage.getItem("kidsYN")), ortho: Boolean.parse(localStorage.getItem("orthoYN")) };
+    console.log(userInput);
     //api url from https://dev.socrata.com/foundry/data.healthcare.gov/dtk6-f38y
     var url = "https://data.healthcare.gov/resource/dtk6-f38y.json";
     // API for Maryland schoolchildren data (Kindergarten  & 3rd grade)
-    var url2 = "https://data.maryland.gov/api/views/8n7n-ij7b/rows.json?accessType=DOWNLOAD";
-    //when we get response from API we will assign that array to theData global variable
+   
     var theData = {};
 
     //global variable because several functions use it
@@ -73,21 +18,7 @@
         console.log(error);
     })
 
-    $.get(url2).done(function (response) {
-        let dentalVisit12Mos = response.data[32][9];
-        let privateDentalIns = response.data[29][9];
-        let toothAche12Mos = response.data[44][9];
-        $('#stat1').append(`<span class='numscroller' data-min='0' data-max=${dentalVisit12Mos} data-delay='3' data-increment='1'></span>`);
-        $('#stat2').append(`<span class='numscroller' data-min='0' data-max=${privateDentalIns} data-delay='3' data-increment='1'></span>`);
-        $('#stat3').append(`<span class='numscroller' data-min='0' data-max=${toothAche12Mos} data-delay='3' data-increment='1'></span>`);
-    }).fail(function (error) {
-        console.log(error);
-    })
-
-    // will receive userInput object below from event listener
-    //var userInput = { married: false, kids: true, ortho: true };
-    console.log(userInput);
-    //married function
+       
     //below function for non married users
     function Individual(userInput, uniqueS) {
         var chartOutS = [];
@@ -176,7 +107,7 @@
                     let chartOutS = {};
                     chartOutS.planName = uniqueS[i].issuer_name;
                     chartOutS.phone = uniqueS[i].customer_service_phone_number_toll_free;
-                    chartOutS.cost = Number(uniqueS[i].premium_adult_individual_age_21);
+                    chartOutS.cost = Number(uniqueS[i].individual_1_child_age_21);
                     chartOutS.major = uniqueS[i].major_dental_care_adult;
                     //adding elements of chartOutSKO to return graphMKO to graph
                     graphS.push(chartOutS);
@@ -340,7 +271,6 @@
                     chartOutM.major = uniqueM[i].major_dental_care_adult;
                     graphM.push(chartOutM);
                 }//end for loop
-
                 //starting code for max min avg
                 var uniqueMNum = [];
                 //convert string values to number couple_1_child_age_21
@@ -413,7 +343,7 @@
                     let chartOutM = {};
                     chartOutM.planName = uniqueM[i].issuer_name;
                     chartOutM.phone = uniqueM[i].customer_service_phone_number_toll_free;
-                    chartOutM.cost = Number(uniqueM[i].premium_couple_21);
+                    chartOutM.cost = Number(uniqueM[i].couple_1_child_age_21);
                     chartOutM.major = uniqueM[i].major_dental_care_adult;
                     graphM.push(chartOutM);
                 }//end for loop
