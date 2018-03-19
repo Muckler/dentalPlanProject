@@ -22,7 +22,7 @@
     //below function for non married users
     function Individual(userInput, uniqueS) {
         var chartOutS = [];
-        if (userInput.kidsYN == true) {
+        if (userInput.kids == true) {
             //user selected ortho coverage for kids
             if (userInput.ortho == true) {
                 var graphS = [];
@@ -212,8 +212,7 @@
                 dentalElem.innerHTML = "Plan Name:  " + graphS[m].planName + "<br />" + "Plan Phone #:  " + graphS[m].phone +
                     "<br />" + "Cost of Dental Plan:  $" + graphS[m].cost +
                     "<br />" + "Major Coverage:  " + graphS[m].major;
-                //dentalBox[0].append(dentalElem);
-                console.log(dentalBox);
+                dentalBox[0].append(dentalElem);
             }//end for loop
             var ctx = document.getElementById("myChart");
             var myChart = new Chart(ctx, {
@@ -257,9 +256,9 @@
         console.log(uniqueM);
         var graphM = [];
         // code here if kids and another if else for ortho
-        if (userInput.kidsYN == true) {
+        if (userInput.kids == true) {
             //user selected ortho coverage for kids
-            if (userInput.orthoYN == true) {
+            if (userInput.ortho == true) {
                 //var graphMKO = [];    
                 //need to remove duplicate plans in data
                 for (let i = 0; i < 4; i++) {
