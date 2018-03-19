@@ -72,18 +72,21 @@
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ["My Plan", "Average Plan"],
+                        labels: ["Plan 1", "Plan 2", "Plan 3", "Plan 4", "Average Plan"],
                         datasets: [{
                             label: 'Plan Cost in Dollars',
-                            data: [graphS[0].cost, avgC],
+                            data: [graphS[0].cost, graphS[1].cost, graphS[2].cost, graphS[3].cost, avgC],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
+                                'rgba(138,43,226, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
 
                             ],
                             borderColor: [
                                 'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
+                                'rgba(138,43,226, 1)',
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
                                 'rgba(153, 102, 255, 1)',
@@ -152,18 +155,21 @@
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ["My Plan", "Average Plan"],
+                        labels: ["Plan 1", "Plan 2", "Plan 3", "Plan 4", "Average Plan"],
                         datasets: [{
                             label: 'Plan Cost in Dollars',
-                            data: [graphS[0].cost, avgC],
+                            data: [graphS[0].cost, graphS[1].cost, graphS[2].cost, graphS[3].cost, avgC],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
+                                'rgba(138,43,226, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
 
                             ],
                             borderColor: [
                                 'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
+                                'rgba(138,43,226, 1)',
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
                                 'rgba(153, 102, 255, 1)',
@@ -233,18 +239,21 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["My Plan", "Average Plan"],
+                    labels: ["Plan 1", "Plan 2", "Plan 3", "Plan 4", "Average Plan"],
                     datasets: [{
                         label: 'Plan Cost in Dollars',
-                        data: [graphS[0].cost, avgC],
+                        data: [graphS[0].cost, graphS[1].cost, graphS[2].cost, graphS[3].cost, avgC],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
+                            'rgba(138,43,226, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
 
                         ],
                         borderColor: [
                             'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
+                            'rgba(138,43,226, 1)',
                             'rgba(255, 206, 86, 1)',
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
@@ -322,18 +331,21 @@
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ["My Plan", "Average Plan"],
+                        labels: ["Plan 1", "Plan 2", "Plan 3", "Plan 4", "Average Plan"],
                         datasets: [{
                             label: 'Plan Cost in Dollars',
-                            data: [graphM[0].cost, avgC],
+                            data: [graphM[0].cost, graphM[1].cost, graphM[2].cost, graphM[3].cost, avgC],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
+                                'rgba(138,43,226, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
 
                             ],
                             borderColor: [
                                 'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
+                                'rgba(138,43,226, 1)',
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
                                 'rgba(153, 102, 255, 1)',
@@ -401,18 +413,21 @@
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ["My Plan", "Average Plan"],
+                        labels: ["Plan 1", "Plan 2", "Plan 3", "Plan 4", "Average Plan"],
                         datasets: [{
                             label: 'Plan Cost in Dollars',
-                            data: [graphM[0].cost, avgC],
+                            data: [graphM[0].cost, graphM[1].cost, graphM[2].cost, graphM[3].cost, avgC],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
+                                'rgba(138,43,226, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
 
                             ],
                             borderColor: [
                                 'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
+                                'rgba(138,43,226, 1)',
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
                                 'rgba(153, 102, 255, 1)',
@@ -480,17 +495,20 @@
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ["My Plan", "Average Plan"],
+                        labels: ["Plan 1", "Plan 2", "Plan 3", "Plan 4", "Average Plan"],
                         datasets: [{
                             label: 'Plan Cost in Dollars',
-                            data: [graphM[0].cost, avgC],
+                            data: [graphM[0].cost, graphM[1].cost, graphM[2].cost, graphM[3].cost, avgC],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
+                                'rgba(138,43,226, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                             ],
                             borderColor: [
                                 'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
+                                'rgba(138,43,226, 1)',
                                 'rgba(255, 206, 86, 1)',
                                 'rgba(75, 192, 192, 1)',
                                 'rgba(153, 102, 255, 1)',
